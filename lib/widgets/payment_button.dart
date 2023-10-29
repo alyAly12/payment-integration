@@ -3,9 +3,10 @@ import 'package:payment_project/core/utils/app_styles.dart';
 
 
 class PaymentButton extends StatelessWidget {
-  const PaymentButton({super.key, required this.title,required this.onPressed,});
+  const PaymentButton({super.key, required this.title,required this.onPressed,  this.isLoading = false,});
 final String title;
  final void Function()? onPressed;
+ final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,7 +25,9 @@ final String title;
             )
           ),
             onPressed:onPressed,
-            child: Text(
+            child: isLoading
+                ?const CircularProgressIndicator()
+                :Text(
                 title,
                 style:Styles.style22
             ),

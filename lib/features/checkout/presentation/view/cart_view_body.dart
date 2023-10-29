@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_project/core/utils/app_styles.dart';
+import 'package:payment_project/features/checkout/data/repo/chechout_repo_impl.dart';
+import 'package:payment_project/features/checkout/presentation/stripe_payment_cubit.dart';
 import 'package:payment_project/features/checkout/presentation/view/payment_detail_view.dart';
 import 'package:payment_project/widgets/order_info_item.dart';
 import 'package:payment_project/widgets/payment_button.dart';
@@ -54,12 +57,17 @@ class CartViewBody extends StatelessWidget {
           PaymentButton(title: 'Complete Payment', onPressed: () {
             // Navigator.pushNamed(context, PaymentDetailView.id);
             showModalBottomSheet(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(topRight:Radius.circular(12) ,topLeft: Radius.circular(12))
-              ),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(12),
+                        topLeft: Radius.circular(12))
+                ),
                 context: context,
-                builder: (context){
-                  return const PaymentMethodsBottomSheet();
+                builder: (context) {
+                  return BlocProvider(
+                    create: (context) => StripePaymentCubit(CheckOutRepoImpl()),
+                    child: const PaymentMethodsBottomSheet(),
+                  );
                 });
           },)
         ],
