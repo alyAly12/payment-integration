@@ -1,4 +1,4 @@
-import '../features/checkout/model/payment_model_list_item.dart';
+import '../features/checkout/data/model/payment_model_list_item.dart';
 
 class Consts{
 static  List<PaymentModelList>paymentMethods=[
