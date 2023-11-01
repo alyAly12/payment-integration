@@ -1,18 +1,18 @@
 import 'details.dart';
 
-class Amount {
+class AmountModel {
   String? total;
   String? currency;
-  Details? details;
+  DetailsModel? details;
 
-  Amount({this.total, this.currency, this.details});
+  AmountModel({this.total, this.currency, this.details});
 
-  factory Amount.fromJson(Map<String, dynamic> json) => Amount(
+  factory AmountModel.fromJson(Map<String, dynamic> json) => AmountModel(
         total: json['total'] as String?,
         currency: json['currency'] as String?,
         details: json['details'] == null
             ? null
-            : Details.fromJson(json['details'] as Map<String, dynamic>),
+            : DetailsModel.fromJson(json['details'] as Map<String, dynamic>),
       );
 
   Map<String, dynamic> toJson() => {
